@@ -1,0 +1,28 @@
+{
+  "name": "@mosteast/base-error",
+  "version": "0.1.0",
+  "homepage": "https://github.com/xxx/xxx#readme",
+  "repository": "github:xxx/xxx",
+  "description": "xxx",
+  "main": "build/index.js",
+  "files": [
+    "build/"
+  ],
+  "scripts": {
+    "test": "npx jest --coverage",
+    "build": "rm -fr ./build/* && npx tsc",
+    "release": "npm version patch && npm publish --access public",
+    "build_and_release": "npm run build && npm run release"
+  },
+  "author": "Mosteast team",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "@types/node": "^11.15.3",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.2.0",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.2"
+  }
+}
