@@ -16,15 +16,20 @@ it('should be able to extend sub error class', async () => {
 })
 
 it('should be able to further extend', async () => {
+  const LEVEL = 'level1'
+
   class A extends E {}
 
-  class B extends A {}
+  class B extends A {
+    level = LEVEL
+  }
 
   const e = new B('Yo')
   expect(() => {throw e}).toThrow(B)
   expect(e.constructor).toBe(B)
   expect(e).toBeInstanceOf(B)
   expect(e).toBeInstanceOf(A)
+  expect(e.level).toBe(LEVEL)
 })
 
 it('should be able to convert to JSON', async () => {
