@@ -56,5 +56,5 @@ it('can generate echain', async () => {
 
   const e = new B('yo')
   expect(e.chain).toHaveLength(3)
-  expect(e.get_echain()).toContain('.')
+  expect(e.generate_echain()).toContain('.')
 })

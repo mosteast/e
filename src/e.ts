@@ -140,6 +140,7 @@ export class E implements T_error {
 
     this.stack = (new Error()).stack
     this.generate_chain()
+    this.generate_echain()
   }
 
   /**
@@ -166,7 +167,7 @@ export class E implements T_error {
    * Generate and get echain string
    * @returns {string}
    */
-  get_echain() {
+  generate_echain() {
     if (!this.echain) {
       this.echain = this.chain.join('.')
     }
