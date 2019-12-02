@@ -105,12 +105,16 @@ export class E implements T_error {
    */
   stack: string
 
-  constructor(message: string)
-  constructor(message: string, solution: string)
-  constructor(e: Error)
-  constructor(e: E)
-  constructor(opt: T_error)
-  constructor(...a) {
+  constructor(message?: string)
+  constructor(message?: string, solution?: string)
+  constructor(e?: Error)
+  constructor(e?: E)
+  constructor(opt?: T_error)
+  constructor(...argS) {
+    this.init(...argS)
+  }
+
+  init(...a) {
     const a0 = a[0]
     switch (a.length) {
       case 1:

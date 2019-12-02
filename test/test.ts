@@ -32,6 +32,28 @@ it('should be able to further extend', async () => {
   expect(e.level).toBe(LEVEL)
 })
 
+it('can overwrite default property', async () => {
+  class A extends E {
+    message = 'a'
+
+    constructor(...argS) {
+      super()
+      this.init(...argS)
+    }
+  }
+
+  const a = new A()
+
+  expect(a.message).toBe('a')
+
+  const b = new A('b')
+  expect(b.message).toBe('b')
+
+  const c = new A({ message: 'c', eid: 'E123' })
+  expect(c.message).toBe('c')
+  expect(c.eid).toBe('E123')
+})
+
 it('should be able to convert to JSON', async () => {
   class A extends E {}
 
