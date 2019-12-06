@@ -1,7 +1,6 @@
 import { E } from '../src/index'
 
 it('Base class should throw', async () => {
-
   expect(() => {
     throw new E('Yo')
   }).toThrow(E)

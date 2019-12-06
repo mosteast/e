@@ -1,3 +1,5 @@
+import { BaseError } from 'make-error'
+
 export interface T_error {
   /**
    * Unique error code for error identifying, can be overwritten by by descendents.
@@ -52,7 +54,7 @@ export interface T_error {
   stack?: string
 }
 
-export class E implements T_error {
+export class E extends BaseError implements T_error {
   /**
    * Unique error code for error identifying, can be overwritten by by descendents.
    *
@@ -111,10 +113,10 @@ export class E implements T_error {
   constructor(e?: E)
   constructor(opt?: T_error)
   constructor(...argS) {
+    super()
     this.init(...argS)
-    // @ts-ignore
-    this.name = this.constructor.name
-    Error.captureStackTrace(this, this.constructor)
+    // this.name = this.constructor.name
+    // Error.captureStackTrace(this, this.constructor)
   }
 
   init(...a) {
