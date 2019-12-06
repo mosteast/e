@@ -112,6 +112,9 @@ export class E implements T_error {
   constructor(opt?: T_error)
   constructor(...argS) {
     this.init(...argS)
+    // @ts-ignore
+    this.name = this.constructor.name
+    Error.captureStackTrace(this, this.constructor)
   }
 
   init(...a) {
@@ -142,7 +145,7 @@ export class E implements T_error {
         break
     }
 
-    this.stack = (new Error()).stack
+    // this.stack = (new Error()).stack
     this.generate_chain()
     this.generate_echain()
   }
@@ -188,3 +191,8 @@ export class E implements T_error {
     }
   }
 }
+
+// // @ts-ignore
+// E.prototype = new Error
+// // @ts-ignore
+// E.prototype.name = 'E'

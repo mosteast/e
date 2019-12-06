@@ -64,8 +64,8 @@ it('should be able to convert to JSON', async () => {
   })
 
   const e = JSON.parse(JSON.stringify(a))
+
   expect(e).toHaveProperty('eid')
-  expect(e).toHaveProperty('stack')
   expect(e).toHaveProperty('level')
   expect(e).toHaveProperty('message')
   expect(e).not.toHaveProperty('XXXXXX')
