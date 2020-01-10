@@ -23,6 +23,7 @@ async function run() {
 	shell.cp(r('Dockerfile.raw'), r('build/Dockerfile'))
 	shell.cp(r('.env.example'), r('build/.env.example'))
 	shell.cp(r('.gitignore'), r('build/.gitignore'))
+	shell.cp(r('readme.md'), r('build/readme.md'))
 	shell.cp(r('tsconfig.json'), r('build/tsconfig.json'))
 	shell.cp('-r', r('bin'), r('build'))
 
