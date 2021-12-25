@@ -1,6 +1,6 @@
 import { BaseError } from 'make-error'
 
-export interface T_error {
+export interface T_error<Data = any> {
   /**
    * Unique error code for error identifying, can be overwritten by by descendents.
    *
@@ -46,7 +46,7 @@ export interface T_error {
    *
    * @example {input: {username: 'Not a username'}}
    */
-  data?: any
+  data?: Data
 
   /**
    * Stack info
@@ -54,7 +54,7 @@ export interface T_error {
   stack?: string
 }
 
-export class E extends BaseError implements T_error {
+export class E<Data = any> extends BaseError implements T_error<Data> {
   /**
    * Unique error code for error identifying, can be overwritten by by descendents.
    *
@@ -100,7 +100,7 @@ export class E extends BaseError implements T_error {
    *
    * @example {input: {username: 'Not a username'}}
    */
-  data?: any
+  data?: Data
 
   /**
    * Stack info
