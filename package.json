@@ -1,6 +1,6 @@
 {
   "name": "@mosteast/e",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "homepage": "https://github.com/mosteast/e#readme",
   "repository": "github:mosteast/e",
   "description": "Better error, Make errors easier to extend, structure.",
