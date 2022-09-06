@@ -1,4 +1,4 @@
-import { BaseError } from 'make-error'
+import { BaseError } from "make-error";
 
 export interface T_error<Data = any> {
   /**
@@ -6,19 +6,19 @@ export interface T_error<Data = any> {
    *
    * @example 'E1829'
    */
-  eid?: string
+  eid?: string;
 
   /**
    * String version of error chain from inheritance.
    * @example 'e_base.external.invalid_api_argument'
    */
-  echain?: string
+  echain?: string;
 
   /**
    * Error chain from inheritance.
    * @example [ 'e', 'external', 'invalid_api_argument' ]
    */
-  chain?: string[]
+  chain?: string[];
 
   /**
    * Error level, defined and specified by descendents.
@@ -27,31 +27,31 @@ export interface T_error<Data = any> {
    * @example 'external'
    * @example 'database'
    */
-  level?: string
+  level?: string;
 
   /**
    * How to solve this problem
    *
    * @example 'Please configure .env file first.'
    */
-  solution?: string
+  solution?: string;
 
   /**
    * One line to cover the error.
    */
-  message?: string
+  message?: string;
 
   /**
    * Additional data of the error goes here
    *
    * @example {input: {username: 'Not a username'}}
    */
-  data?: Data
+  data?: Data;
 
   /**
    * Stack info
    */
-  stack?: string
+  stack?: string;
 }
 
 export class E<Data = any> extends BaseError implements T_error<Data> {
@@ -60,19 +60,19 @@ export class E<Data = any> extends BaseError implements T_error<Data> {
    *
    * @example 'E1829'
    */
-  eid: string
+  eid: string;
 
   /**
    * String version of error chain from inheritance.
    * @example 'e_base.external.invalid_api_argument'
    */
-  echain: string
+  echain: string;
 
   /**
    * Error chain from inheritance.
    * @example [ 'e', 'external', 'invalid_api_argument' ]
    */
-  chain: string[] = []
+  chain: string[] = [];
 
   /**
    * Error level, defined and specified by descendents.
@@ -81,75 +81,75 @@ export class E<Data = any> extends BaseError implements T_error<Data> {
    * @example 'external'
    * @example 'database'
    */
-  level: string
+  level: string;
 
   /**
    * How to solve this problem
    *
    * @example 'Please configure .env file first.'
    */
-  solution?: string
+  solution?: string;
 
   /**
    * One line to cover the error.
    */
-  message: string
+  message: string;
 
   /**
    * Additional data of the error goes here
    *
    * @example {input: {username: 'Not a username'}}
    */
-  data?: Data
+  data?: Data;
 
   /**
    * Stack info
    */
-  stack: string
+  stack: string;
 
-  constructor(message?: string)
-  constructor(message?: string, solution?: string)
-  constructor(e?: Error)
-  constructor(e?: E)
-  constructor(opt?: T_error)
+  constructor(message?: string);
+  constructor(message?: string, solution?: string);
+  constructor(e?: Error);
+  constructor(e?: E);
+  constructor(opt?: T_error);
   constructor(...argS) {
-    super()
-    this.init(...argS)
+    super();
+    this.init(...argS);
     // this.name = this.constructor.name
     // Error.captureStackTrace(this, this.constructor)
   }
 
   init(...a) {
-    const a0 = a[0]
+    const a0 = a[0];
     switch (a.length) {
       case 1:
         switch (typeof a0) {
-          case 'string':
-            this.message = a0
-            break
-          case 'object':
-            this.fill(a0)
-            break
+          case "string":
+            this.message = a0;
+            break;
+          case "object":
+            this.fill(a0);
+            break;
         }
-        break
+        break;
       case 2:
-        let a1 = a[1]
-        this.message = a0
+        let a1 = a[1];
+        this.message = a0;
 
         switch (typeof a1) {
-          case 'string':
-            this.solution = a1
-            break
-          case 'object':
-            this.fill(a1)
-            break
+          case "string":
+            this.solution = a1;
+            break;
+          case "object":
+            this.fill(a1);
+            break;
         }
-        break
+        break;
     }
 
     // this.stack = (new Error()).stack
-    this.generate_chain()
-    this.generate_echain()
+    this.generate_chain();
+    this.generate_echain();
   }
 
   /**
@@ -159,17 +159,19 @@ export class E<Data = any> extends BaseError implements T_error<Data> {
    */
   generate_chain(ins = undefined) {
     if (ins === undefined) {
-      ins = this
+      ins = this;
     }
 
-    ins = Object.getPrototypeOf(ins)
-    const name = ins.constructor.name.toLowerCase()
+    ins = Object.getPrototypeOf(ins);
+    const name = ins.constructor.name.toLowerCase();
 
-    this.chain.unshift(name)
+    this.chain.unshift(name);
 
-    if (ins.constructor === E || !ins.constructor) {return}
+    if (ins.constructor === E || !ins.constructor) {
+      return;
+    }
 
-    return this.generate_chain(ins)
+    return this.generate_chain(ins);
   }
 
   /**
@@ -178,9 +180,9 @@ export class E<Data = any> extends BaseError implements T_error<Data> {
    */
   generate_echain() {
     if (!this.echain) {
-      this.echain = this.chain.join('.')
+      this.echain = this.chain.join(".");
     }
-    return this.echain
+    return this.echain;
   }
 
   /**
@@ -189,7 +191,7 @@ export class E<Data = any> extends BaseError implements T_error<Data> {
    */
   fill(obj) {
     for (let key in obj) {
-      this[key] = obj[key]
+      this[key] = obj[key];
     }
   }
 }
